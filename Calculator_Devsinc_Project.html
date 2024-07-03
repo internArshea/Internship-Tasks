@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="D:\HTML\Devsinc-Project1-Calculator\styles1.css" rel="stylesheet">
+    <title>Scientific Calculator</title>
+
+    </head>
+
+    <body>
+        <div class="main">
+            <h1 style="text-align: center; margin: 10px">Scientific Caluculator</h1>
+            <div name="calculator" class="calculator">
+                <table>
+                    <tr>
+                        <td colspan="7"><input type="text"  id="inputText" placeholder=""> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7"><input type="text" id="outputText" placeholder="0"> </td>
+                    </tr>
+                    <tr id="row1">
+                        <td><button class="sci-ops" id="exp">^</button></td>
+                        <td><button class="sci-ops" id="sqrt">sqrt</button></td>
+                        <td><button class="sci-ops" id="sine">sin</button></td>
+                        <td><button class="sci-ops" id="cosine">cos</button></td>
+                        <td><button class="sci-ops" id="tangent">tan</button></td>
+                    </tr>
+                    <tr id="row2">
+                        <td><button value='9' class="num">9</button></td>
+                        <td><button value='8' class="num">8</button></td>
+                        <td><button value='7' class="num">7</button></td>
+                        <td><button class ="remove" id="Del">Del</button></td>
+                        <td><button class ="remove" id="AC">AC</button></td>
+                    </tr>
+
+                    <tr id="row3">
+                        <td><button value="6"  class="num">6</button></td>
+                        <td><button value="5" class="num">5</button></td>
+                        <td><button value="4" class="num">4</button></td>
+                        <td><button value="x" class="arth-ops" id="multiply">x</button></td>
+                        <td><button class="arth-ops" id="division">/</button></td>
+                    </tr>
+
+                    <tr id="row4">
+                        <td><button value="3" class="num">3</button></td>
+                        <td><button value="2" class="num">2</button></td>
+                        <td><button value="1" class="num">1</button></td>
+                        <td><button value="+" class="arth-ops" id="add">+</button></td>
+                        <td><button value="-" class="arth-ops" id="sub">-</button></td>                   
+                    </tr>
+                    <tr id="row5">
+                        <td><button value="0" class="num">0</button></td>
+                        <td><button class="num" id="decimal">.</button></td>
+                        <td><button class="sci-ops" id="parenOpen">(</button></td>
+                        <td><button class="sci-ops" id="parenClose">)</button></td>
+                        <td><button class="arth-ops" id="equals">=</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="history">
+                <div class="history-header">
+                    <h3>History</h3>
+                    <button id="clrHis" onclick="clearAllHistory()">Clear</button>
+                </div>
+                <ul id="list"></ul>
+            </div>
+        </div>
+    </body>
+    <script src="main.js"></script>
+</html>
