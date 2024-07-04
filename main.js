@@ -37,18 +37,18 @@
         let stack =[null];
         let prefix = "";
 
-        if(string.startsWith('sin(') && string.endsWith(')')){return Math.sin(Number(string.slice(4, -1)))}
-        if(string.startsWith('cos(') && string.endsWith(')')){return Math.cos(Number(string.slice(4, -1)))}
-        if(string.startsWith('tan(') && string.endsWith(')')){return Math.tan(Number(string.slice(4, -1)))}
-        if(string.startsWith('sqrt(') && string.endsWith(')')){return Math.pow(Number(string.slice(5, -1)), 1/2)}
+        if(string.startsWith('sin(') && string.endsWith(')')){return Math.sin(Number(string.slice(4, -1))).toFixed(4)}
+        if(string.startsWith('cos(') && string.endsWith(')')){return Math.cos(Number(string.slice(4, -1))).toFixed(4)}
+        if(string.startsWith('tan(') && string.endsWith(')')){return Math.tan(Number(string.slice(4, -1))).toFixed(4)}
+        if(string.startsWith('sqrt(') && string.endsWith(')')){return Math.pow(Number(string.slice(5, -1)), 1/2).toFixed(4)}
 
         string = string.replace(/pi/g, '3.1415');
         string = string.replace(/e/g, '2.7182');
 
         for(let i=0; i<string.length; i++){
-            if(/[-0-9]/.test(string[i]) || string[i] === '.'){
+            if(/[0-9]/.test(string[i]) || string[i] === '.'){
                 let num = "";
-            while (i < string.length && (/[-0-9]/.test(string[i]) || string[i] === '.')) {
+            while (i < string.length && (/[0-9]/.test(string[i]) || string[i] === '.')) {
                 num += string[i];
                 i++;
             }
@@ -68,7 +68,6 @@
                 }
             }
             else if(operators.includes(string[i])){
-                console.log("enter");
                 if(stack[0]===null){
                     stack[0] = string[i];
                 }
@@ -105,9 +104,9 @@
     function parsePrefix(prefixExp){
         let stack=[]
         for(let i=prefixExp.length-1; i>=0; i--){
-            if(/[-0-9]/.test(prefixExp[i])){
+            if(/[0-9]/.test(prefixExp[i])){
                 let num="";
-                while(i>=0 && (/[-0-9]/.test(prefixExp[i]) || prefixExp[i] ==='.')){
+                while(i>=0 && (/[0-9]/.test(prefixExp[i]) || prefixExp[i] ==='.')){
                     num += prefixExp[i];
                     prefixExp.replace(i+2, "");
                     i--;
