@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import 'D:/React/socialmedia-app/src/styles/login.css'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import 'D:/React/socialmedia-app/Internship-Tasks/src/styles/login.css'
 
 function Login(){
     const [inputValues, setInputValues] = useState({
@@ -7,19 +8,26 @@ function Login(){
         password: ''
     });
     
-    const [formErrors, setFormErrors] = useState({})
+    const [formErrors, setFormErrors] = useState([])
+    const [isSubmit, setIsSubmit] = useState(false)
 
 
     const handleChange = (e) =>{
         setInputValues({...inputValues,
             [e.target.name]: e.target.value
         });
-        console.log(inputValues);
     }
+
+    useEffect(() => {
+        if(Object.keys(formErrors).length === 0 && isSubmit){
+            console.log(inputValues)
+        }
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(inputValues))
+        setIsSubmit(true)
     }  
     
     const validate = (v) => {
@@ -35,16 +43,21 @@ function Login(){
     
     return (
         <div className='card'>
-            <h2>Login Form</h2>
-            <form onSubmit={handleSubmit}>
-                <input type='text' name='username' value={inputValues.username} onChange={handleChange} placeholder="Username"/>
-                <input type='password' name='password' value={inputValues.password} onChange={handleChange} placeholder="Password"/>
+            <h1>Login Form</h1>
+            <form className='loginForm' onSubmit={handleSubmit}>
+                <label>Userame<p className='required'>*</p>
+                <input type='text' name='username' value={inputValues.username} onChange={handleChange} placeholder="Username"/></label>
+                <p className='errors'>{ formErrors.username }</p>
+                <label>Password<p className='required'>*</p>
+                <input type='password' name='password' value={inputValues.password} onChange={handleChange} placeholder="Password"/></label>
+                <p className='errors'>{ formErrors.password }</p>
                 <button type='submit'>Login</button>
             </form>
             <div className="bottom">
                 <p><i>Don't Have an Account?</i></p>
-                <button>Register</button>
-
+                <Link to='/'>
+                    <button>Register</button>
+                </Link>
             </div>
         </div>
     ) 
