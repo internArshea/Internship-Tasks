@@ -1,0 +1,24 @@
+.card{
+    background-color: rgb(246, 246, 249);
+    border-radius: 8px;
+    width: 25em;
+    padding: 1em;
+    justify-content: center;
+}
+.card input{
+    width: 80%;
+    height: 3em;
+    margin: 1em 0;
+    padding: 0 0.5em;
+    border-radius: 8px;
+}
+
+.card button{
+    height: 2em;
+    width: 5em;
+    background-color: rgb(49, 49, 197);
+    color: aliceblue;
+    border: 1px, solid, transparent;
+    border-radius: 10px;
+    font-size: larger;
+}

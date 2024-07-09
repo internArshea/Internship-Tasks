@@ -1,6 +1,8 @@
-# Internship-Tasks
-All the tasks and Projects I did related to the Javascript and MERN Internship at Devsinc are included in this repository.
-## Factorial of a Number
-The task calculates factorial of a number given by the user. Concepts of function definition and recursive call were revised in this task. The task focuses on Javascript concepts. Makingthe app visually appealing was not my priority.
-## Resident Listing
-The task implements OOP concepts by defining a parent class House(). The child classes use the printHouseDetails(), which print the house details given by the user. When the house details are entered by the user, the type of house is appended in the residentList array.
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
