@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import 'D:/React/socialmedia-app/Internship-Tasks/src/styles/login.css'
+import CurrentUser from './CurrentUser'
 
 function Login(){
     const [inputValues, setInputValues] = useState({
@@ -9,8 +10,9 @@ function Login(){
     });
     
     const [formErrors, setFormErrors] = useState([])
-    const [isSubmit, setIsSubmit] = useState(false)
-
+    
+    const key_username=CurrentUser[0].username;
+    const key_userpass=CurrentUser[0].password;
 
     const handleChange = (e) =>{
         setInputValues({...inputValues,
@@ -18,16 +20,12 @@ function Login(){
         });
     }
 
-    useEffect(() => {
-        if(Object.keys(formErrors).length === 0 && isSubmit){
-            console.log(inputValues)
-        }
-    })
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(inputValues))
-        setIsSubmit(true)
+        if(Object.keys(formErrors).length === 0){
+            {window.location.href = '/homepage/:id'}
+        }
     }  
     
     const validate = (v) => {
@@ -35,8 +33,14 @@ function Login(){
         if(!v.username){
             errors.username = "Username is Required"
         }
+        else if(v.username !== key_username){
+            errors.username = "Incorrect Username";
+        }
         if(!v.password){
             errors.password = "Password is Required"
+        }
+        else if(v.password !== key_userpass){
+            errors.password = "Incorrect Pasword"
         }
         return errors;
     }

@@ -12,19 +12,12 @@ function Signup(){
     });
 
     const [formErrors, setFormErrors] = useState([])
-    const [isSubmit, setIsSubmit] = useState(false)
 
     const handleChange = (e) =>{
         setInputValues({...inputValues, 
             [e.target.name]: e.target.value
         });
     }
-
-    useEffect(() => {
-        if(Object.keys(formErrors).length === 0 && isSubmit){
-            {window.location.href = '/login'}
-        }
-    })
 
     const validate = (v) => {
         const errors = {}
@@ -58,8 +51,11 @@ function Signup(){
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        setFormErrors(validate(inputValues));
-        setIsSubmit(true);
+        const errors = validate(inputValues)
+        setFormErrors(errors);
+        if(Object.keys(formErrors).length === 0){
+            {window.location.href = '/login'}
+        }
     }
     return (
         <div className='card'>

@@ -2,7 +2,10 @@
     background-color: rgb(246, 246, 249);
     border-radius: 8px;
     width: 25em;
+    margin: 4em 27em;
     padding: 1em;
+    align-self: center;
+    text-align: center;
     justify-content: center;
 }
 

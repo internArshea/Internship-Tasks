@@ -1,0 +1,43 @@
+
+.create-post{
+    width: 70%;
+    height: 17em;
+    margin-top: 2em;
+    background-color: rgb(209, 209, 253);
+    border-radius: 1.5em;
+    padding: 1em;
+}
+
+.create-post img{
+    align-self: top;
+    width: 3em;
+    height: 3em;
+    border-radius: 25px;
+}
+
+.create-post textarea{
+    margin-left: 2em;
+    margin-bottom: 0.2em;
+    background-color: rgb(226, 226, 248);
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 8px;
+    font-size: large;
+    font-weight: 700;
+    width: 80%;
+}
+
+.post-content textarea{
+    height: 10em;
+    margin-left: 5.2em;
+    font-size: medium;
+    font-weight: 100;
+}
+.create-post button{
+    font-size: large;
+    padding: 0.5em;
+    border-radius: 8px;
+    float: left;
+    margin-top: 0.5em;
+    color: aliceblue;
+    background-color: rgb(71, 71, 214);
+}
