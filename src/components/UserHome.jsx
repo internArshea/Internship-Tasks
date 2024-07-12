@@ -4,14 +4,17 @@ import CreatePost from './CreatePost.jsx'
 import ViewPost from './ViewPost.jsx'
 import CurrentUser from './CurrentUser.js'
 import UserPosts from './UserPosts.jsx'
+import EditPost from './EditPost.jsx'
+import 'D:/React/socialmedia-app/Internship-Tasks/src/styles/userHome.css'
 
 
 const UserHome = () =>{
     const [posts, setPost] = useState([])
+    const [updatePost, setUpdatePost] = useState(-1)
 
 
-    const addPost = (title, content) =>{
-        setPost([...posts, {id: posts.length + 1, userId: CurrentUser[0].id, title: title, body: content}])
+    const addPost = (inputvalue) =>{
+        setPost([...posts, {id: posts.length + 1, userId: CurrentUser[0].id, title: inputvalue.title, body: inputvalue.body}])
         console.log(posts)
     }
 
@@ -20,22 +23,26 @@ const UserHome = () =>{
     }
 
     const editPost = (id) => {
-        let newPost = posts.find((post) => {
-            return (post.id === id ? post.body : "Error")
-        })
-        console.log(newPost)
+        setUpdatePost(id)
+    }
 
+    function handleUpdate(e){
+        e.preventDefault()
+        setUpdatePost(-1)
     }
 
     return (
         <div className='container'>
             <Nav />
             <CreatePost addPost={ addPost }/>
-            <ul className='userPosts'>
-                {posts.map((post, index)=>(
-                    <UserPosts key={index} post={post} deletePost={deletePost} editPost={editPost}/>
-                ))}
-            </ul>
+            <form onSubmit={handleUpdate}>
+                <ul className='userPosts'>
+                    {posts.map((post, index)=>(
+                        updatePost === post.id ? <EditPost key={index} post={post} list={posts} setlist={setPost}/> :
+                        <UserPosts key={index} post={post} deletePost={deletePost} editPost={editPost} />
+                    ))}
+                </ul>
+            </form>
             <ViewPost post={posts}/>
            
         </div>
