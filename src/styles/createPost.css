@@ -1,5 +1,6 @@
 
 .create-post{
+    float: left;
     width: 70%;
     height: 17em;
     margin-top: 2em;
