@@ -6,8 +6,11 @@
     width:100%;
     height: 100%;
 }
+
 .userPosts{
     float: right;
-    background-color: aliceblue;
-    width: 10%;
+    background-color: rgb(209, 209, 253);
+    border-radius: 15px;
+    width: 25%;
+    padding:0.2em;
 }
