@@ -6,7 +6,8 @@ import UserHome from './components/UserHome'
 import Nav from './components/Nav'
 import CreatePost from './components/CreatePost'
 import ViewPost from './components/ViewPost'
-import Comments from './components/Comments'
+import CommentSection from './components/CommentSection'
+import DisplayComments from './components/DisplayComments'
 
 
 
@@ -38,14 +39,20 @@ function Layout() {
 
                 {
                     path: '/homepage/:id/view-post/',
-                    element: <ViewPost />,
-                    children:[
-                        {
-                            path: '/homepage/:id/view-post/:id/comments',
-                            element: <Comments />
-                        }
-                    ]
+                    element: <ViewPost />
                 },
+               
+            ]
+        },
+        {
+                
+            path: '/:id/comments',
+            element: <CommentSection />,
+            children: [
+                {
+                    path: ':id/comments/view-comments',
+                    element: <DisplayComments />
+                }
             ]
         },
     ])
