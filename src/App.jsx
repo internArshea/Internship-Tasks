@@ -1,11 +1,11 @@
-import Layout from './Layout.jsx'
+import LayoutApp from './AppLayout.jsx'
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <Layout />
+      <LayoutApp />
     </>
   )
 }

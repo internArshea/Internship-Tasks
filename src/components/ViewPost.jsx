@@ -37,6 +37,12 @@ const ViewPost = ({post}) => {
         
     }
 
+    function gototPrevious(){
+        setStartPost(startPost-10);
+        setEndPost(endPost-10);
+        
+    }
+
     return (
         <div className="displayPosts">
             <ul>
@@ -50,6 +56,7 @@ const ViewPost = ({post}) => {
                         </li>)
                 ))}
                 <button className='loadMorePosts' onClick={()=>loadmorePosts()}>Next</button>
+                <buttn className='loadMorePosts' onClick={()=> gototPrevious()}>Back</buttn>
             </ul>
         </div>
     )

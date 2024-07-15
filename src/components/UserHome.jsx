@@ -4,10 +4,13 @@ import CreatePost from './CreatePost.jsx'
 import ViewPost from './ViewPost.jsx'
 import CurrentUser from './CurrentUser.js'
 import UserPosts from './UserPosts.jsx'
+import EditPost from './EditPost.jsx'
+import 'D:/React/social-media-app/Internship-Tasks/src/styles/userHome.css'
 
 
 const UserHome = () =>{
     const [posts, setPost] = useState([])
+    const [updatePost, setUpdatePost] = useState(-1)
 
     /*useEffect({
         localStorage.setItem('MY_HOME_PAGE', JSON.stringify(posts))
@@ -22,11 +25,12 @@ const UserHome = () =>{
     }
 
     const editPost = (id) => {
-        let newPost = posts.find((post) => {
-            return (post.id === id ? post.body : "Error")
-        })
-        console.log(newPost)
+        setUpdatePost(id)
+    }
 
+    function handleSubmit(e){
+        e.preventDefault();
+        setUpdatePost(-1);
     }
 
     return (
@@ -35,6 +39,7 @@ const UserHome = () =>{
             <CreatePost addPost={ addPost }/>
             <ul className='userPosts'>
                 {posts.map((post, index)=>(
+                    updatePost === post.id ? <EditPost key={index} post={post} list={posts} setlist={setPost} handleSubmit={handleSubmit}/> :
                     <UserPosts key={index} post={post} deletePost={deletePost} editPost={editPost}/>
                 ))}
             </ul>

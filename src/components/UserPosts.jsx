@@ -1,4 +1,4 @@
-
+import 'D:/React/social-media-app/Internship-Tasks/src/styles/userPost.css'
 const UserPosts = ({post, deletePost, editPost})=>{
 
     return(
