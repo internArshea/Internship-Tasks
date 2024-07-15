@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import DisplayComments from './DisplayComments'
 
 const CommentSection = () =>{
