@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 const data = import.meta.env.VITE_POSTAPI
-import Comments from './Comments'
+import Comments from './CommentSection'
 import 'D:/React/socialmedia-app/Internship-Tasks/src/styles/viewPost.css'
 
 
@@ -13,28 +13,32 @@ const ViewPost = ({post}) => {
 
     const fetchData = async(s, e)=>{
         try{
-        
             const response =  await fetch(data)
             const json = await response.json()
             let feedData = json.filter((item, index) => index>=s && index<e)
             feedData.length === 0 ? setFeed(["Oops! You've viewed all the Posts for today"]) : setFeed(feedData)
-            
-            console.log(feedData)
         }
         catch(err){
             console.log("Data not fetched")
         }
-    }
+    }  
 
     useEffect(() => {
         fetchData(startPost, endPost)
-    }, [endPost, startPost])
+    }, [startPost])
 
     function loadmorePosts(){
         //currentPage++;
         setStartPost(startPost+10);
-        setEndPost(endPost+10);
-        
+        setEndPost(endPost+10);   
+    }
+
+    function gotoComments(id){
+        console.log(id);
+        return(
+            window.location.href = `/${id}/comments`
+        )
+            
     }
 
     return (
@@ -46,11 +50,9 @@ const ViewPost = ({post}) => {
                         (<li key={index} className='listItem'><div>{list.id}</div>
                             <div className='title'>{list.title}</div> 
                             <div>{list.body}</div>
-                            <Link to='/homepage/:id/view-post/:id/comments'>
                             <div className='comments'>
-                                Comments
+                                <button onClick={()=>gotoComments(list.id)}>Comments</button>
                             </div>
-                            </Link>
                         </li>)
                 ))}
                 <button className='loadMorePosts' onClick={()=>loadmorePosts()}>Next</button>
