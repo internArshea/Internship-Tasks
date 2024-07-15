@@ -29,4 +29,5 @@
     border-top: 1px solid rgb(13, 13, 67);
     font-size: medium;
     color: rgb(118, 118, 118);
+    cursor: pointer;
 }

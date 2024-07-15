@@ -9,7 +9,9 @@ import UserPosts from './UserPosts.jsx'
 const UserHome = () =>{
     const [posts, setPost] = useState([])
 
-
+    /*useEffect({
+        localStorage.setItem('MY_HOME_PAGE', JSON.stringify(posts))
+    }, [setPost])*/
     const addPost = (title, content) =>{
         setPost([...posts, {id: posts.length + 1, userId: CurrentUser[0].id, title: title, body: content}])
         console.log(posts)

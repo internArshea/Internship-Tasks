@@ -1,13 +1,10 @@
 import {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
 const data = import.meta.env.VITE_POSTAPI
-import Comments from './Comments'
 import 'D:/React/socialmedia-app/Internship-Tasks/src/styles/viewPost.css'
 
 
 const ViewPost = ({post}) => {
     const [feed, setFeed] = useState([])
-    //let currentPage = 1;
     const [startPost, setStartPost] = useState(0);
     const [endPost, setEndPost] = useState(10);
 
@@ -30,8 +27,11 @@ const ViewPost = ({post}) => {
         fetchData(startPost, endPost)
     }, [endPost, startPost])
 
+    function gotoComments(id){
+        window.location.href = `/${id}/comments`
+    }
+
     function loadmorePosts(){
-        //currentPage++;
         setStartPost(startPost+10);
         setEndPost(endPost+10);
         
@@ -46,11 +46,7 @@ const ViewPost = ({post}) => {
                         (<li key={index} className='listItem'><div>{list.id}</div>
                             <div className='title'>{list.title}</div> 
                             <div>{list.body}</div>
-                            <Link to='/homepage/:id/view-post/:id/comments'>
-                            <div className='comments'>
-                                Comments
-                            </div>
-                            </Link>
+                            <div className='comments' onClick={()=>gotoComments(list.id)}>Comments</div>
                         </li>)
                 ))}
                 <button className='loadMorePosts' onClick={()=>loadmorePosts()}>Next</button>
