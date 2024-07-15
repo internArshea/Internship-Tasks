@@ -1,0 +1,25 @@
+li{
+    background-color: rgb(226, 226, 248);
+    border-radius: 10px;
+    margin: 1em;
+    list-style: none;
+    height: 100px;
+    padding: 0.5em;
+}
+input{
+    height: 1.5em;
+}
+input, textarea{
+    border-radius: 8px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 0.5em;
+    width: 97%;
+}
+
+li > button{
+    float: right;
+    background-color: rgb(127, 114, 213);
+    color: aliceblue;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}

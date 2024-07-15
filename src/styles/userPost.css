@@ -1,0 +1,8 @@
+.listItem{
+    background-color: rgb(226, 226, 248);
+    border-radius: 8px;
+}
+
+button{
+    margin-right: 0.2em;
+}
