@@ -11,6 +11,7 @@ const Nav = () => {
                 <img src={CurrentUser[0].profileImage} alt='Profile Picture'/>
             </Link>
             <p>{CurrentUser[0].name}</p>
+            <button>Logout</button>
         </div>
     )
 }

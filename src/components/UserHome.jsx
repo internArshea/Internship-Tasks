@@ -12,13 +12,18 @@ const UserHome = () =>{
     const [posts, setPost] = useState([])
     const [updatePost, setUpdatePost] = useState(-1)
 
-    /*useEffect({
-        localStorage.setItem('MY_HOME_PAGE', JSON.stringify(posts))
-    }, [setPost])*/
-    const addPost = (title, content) =>{
-        setPost([...posts, {id: posts.length + 1, userId: CurrentUser[0].id, title: title, body: content}])
-        console.log(posts)
+
+    const addPost = (input) =>{
+        setPost([...posts, {id: posts.length + 1, userId: CurrentUser[0].id, title: input.title, body: input.body}])
+        window.localStorage.setItem('MY_POSTS', JSON.stringify(posts))     
     }
+
+    useEffect(()=>{
+        let savedPost = JSON.parse(localStorage.getItem('MY_POSTS'))
+        if(savedPost){
+            setPost(savedPost)
+        }
+    }, [])
 
     const deletePost = (id) => {
         setPost(posts.filter(post => post.id !== id))
@@ -43,7 +48,7 @@ const UserHome = () =>{
                     <UserPosts key={index} post={post} deletePost={deletePost} editPost={editPost}/>
                 ))}
             </ul>
-            <ViewPost post={posts}/>
+            <ViewPost />
            
         </div>
     )

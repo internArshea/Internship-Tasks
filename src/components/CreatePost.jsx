@@ -2,25 +2,21 @@ import { useState } from 'react'
 import CurrentUser from './CurrentUser'
 import 'D:/React/socialmedia-app/Internship-Tasks/src/styles/createPost.css'
 
-
 function CreatePost({addPost}){
 
-    const [inputTitle, setTitle] = useState('')
-    const [inputContent, setContent] = useState('')
+    const [inputValue, setInputValue] = useState({
+        title: '',
+        body: ''
+    })
 
-    const handleTitleChange = (e) =>{
-        setTitle(e.target.value)
+    const handleChange = (e) =>{
+        setInputValue({...inputValue, [e.target.name]: e.target.value})
     }
-    const handleContentChange = (e) =>{
-        setContent(e.target.value)
-    }
-
+    
     const handleSubmit = (e) =>{
         e.preventDefault();
-        addPost(inputTitle, inputContent);
-
-        setTitle('');
-        setContent('');
+        addPost(inputValue);
+        setInputValue({title: '', body:''})
     }
 
     
@@ -28,9 +24,9 @@ function CreatePost({addPost}){
         <div className="create-post">
             <form onSubmit={handleSubmit}>
             <img src={CurrentUser.map(user=>(user.profileImage))} alt='dp'/>
-            <textarea onChange={handleTitleChange} value={inputTitle} className="post-title" placeholder="Title"/>
+            <textarea name='title' onChange={handleChange} value={inputValue.title} className="post-title" placeholder="Title"/>
             <div className="post-content">
-                <textarea onChange={handleContentChange} value={inputContent} placeholder="Create a Post"/>
+                <textarea name='body' onChange={handleChange} value={inputValue.body} placeholder="Create a Post"/>
             </div>
             <button type='submit'>Post</button>
             </form>

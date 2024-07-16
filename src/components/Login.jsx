@@ -10,9 +10,16 @@ function Login(){
     });
     
     const [formErrors, setFormErrors] = useState([])
-    
+    const keeplogin = document.getElementsByTagName('input')
     const key_username=CurrentUser[0].username;
     const key_userpass=CurrentUser[0].password;
+
+    useEffect(()=>{
+        window.sessionStorage.setItem('KEEP_LOGGEDIN', JSON.stringify(inputValues.username, inputValues.password))
+        if(sessionStorage.getItem("KEEP_LOGGEDIN")){
+            keeplogin.value = sessionStorage.getItem('KEEP_LOGGEDIN')
+        }
+    }, [setInputValues])
 
     const handleChange = (e) =>{
         setInputValues({...inputValues,

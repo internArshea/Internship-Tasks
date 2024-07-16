@@ -1,62 +1,65 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useMemo} from 'react'
 const data = import.meta.env.VITE_POSTAPI
 import 'D:/React/socialmedia-app/Internship-Tasks/src/styles/viewPost.css'
 
+const LIMIT = 10;
 
-const ViewPost = ({post}) => {
+const ViewPost = () => {
     const [feed, setFeed] = useState([])
-    const [startPost, setStartPost] = useState(0);
-    const [endPost, setEndPost] = useState(10);
+   
+    const [pageNumber, setPageNumber] = useState(0);
 
-    const fetchData = async(s, e)=>{
+    const fetchData = async () => {
         try{
         
             const response =  await fetch(data)
             const json = await response.json()
-            let feedData = json.filter((item, index) => index>=s && index<e)
-            feedData.length === 0 ? setFeed(["Oops! You've viewed all the Posts for today"]) : setFeed(feedData)
-            
-            console.log(feedData)
+            setFeed(json);
         }
         catch(err){
-            console.log("Data not fetched")
+            console.log("Data not fetched: ", err)
         }
     }
 
     useEffect(() => {
-        fetchData(startPost, endPost)
-    }, [endPost, startPost])
+        fetchData()
+    }, [])
 
     function gotoComments(id){
         window.location.href = `/${id}/comments`
     }
 
     function loadmorePosts(){
-        setStartPost(startPost+10);
-        setEndPost(endPost+10);
+        if (pageNumber * LIMIT < feed.length) {
+            setPageNumber(pageNumber + 1)
+        }
         
     }
 
     function gototPrevious(){
-        setStartPost(startPost-10);
-        setEndPost(endPost-10);
-        
+        if(pageNumber > 0) {
+            setPageNumber(pageNumber - 1)
+
+        }
     }
+
+    const paginatedFeed = useMemo(
+      () => feed.slice(pageNumber * LIMIT, pageNumber * LIMIT + LIMIT),
+      [pageNumber, feed]
+    );
 
     return (
         <div className="displayPosts">
             <ul>
-                {feed.map((list, index)=>( 
-                    typeof list === 'string' ? 
-                        (<div key={index}>{list}</div>) :
+                {paginatedFeed.map((list, index)=>( 
                         (<li key={index} className='listItem'><div>{list.id}</div>
                             <div className='title'>{list.title}</div> 
                             <div>{list.body}</div>
                             <div className='comments' onClick={()=>gotoComments(list.id)}>Comments</div>
                         </li>)
                 ))}
+                <button className='loadMorePosts' onClick={()=> gototPrevious()}>Back</button>
                 <button className='loadMorePosts' onClick={()=>loadmorePosts()}>Next</button>
-                <buttn className='loadMorePosts' onClick={()=> gototPrevious()}>Back</buttn>
             </ul>
         </div>
     )
